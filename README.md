@@ -62,10 +62,37 @@ minikube stop
 minikube delete
 ```
 
+## Commands
+```
+print env variables
+kubectl exec "$POD_NAME" -- env
+
+bash session
+kubectl exec -ti $POD_NAME -- bash
+```
+
 ## k9s commands
 ```
-:service
+:context
 :namespace
 :service
 :deployment
 ```
+
+## Concepts
+
+### Node
+1. worker machine, virtual or physical
+2. managed by control plane
+3. can have multiple pods
+4. Kubelet --> communication with control plane
+5. container runtime (e.g. Docker)
+
+### Pod
+1. \>= 1 app containers
+2. with shared storage volumes, IP and info on how to run each container
+3. models an app-specific logical host
+4. should contain tightly-coupled app containers
+5. run in isolated private network
+6. `kubectl proxy` --> expose network
+7. `curl http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME:8080/proxy/`
